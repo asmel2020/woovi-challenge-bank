@@ -5,11 +5,11 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/dist/server.js",
+            "program": "${workspaceRoot}/src/main.ts",
             "cwd": "${workspaceRoot}",
             "sourceMaps": true,
             "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
+                "${workspaceFolder}/src/**/*.ts"
             ]
         }
     ]
