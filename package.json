@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "test": "npx lerna run test"
+    "start:dev": "npx lerna run start:dev"
   },
   "workspaces": [
     "packages/*"
