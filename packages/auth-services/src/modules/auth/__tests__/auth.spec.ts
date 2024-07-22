@@ -128,9 +128,9 @@ describe('auth user', () => {
 
       const response = await consult(payload);
 
-      expect(typeof response.body.data.userLogin.userLogin.token).toBe('string');
-      expect(response.body.data.userLogin.userLogin.success).toBe('Successful authentication');
-      expect(response.body.data.userLogin.userLogin.error).toBe(null);
+      expect(typeof response.body.data.userLogin.token).toBe('string');
+      expect(response.body.data.userLogin.success).toBe('Successful authentication');
+      expect(response.body.data.userLogin.error).toBe(null);
       expect(response.status).toBe(200);
     });
 
@@ -147,9 +147,9 @@ describe('auth user', () => {
       const response = await consult(payload);
 
       
-      expect(response.body.data.userLogin.userLogin.token).toBe(null);
-      expect(response.body.data.userLogin.userLogin.success).toBe(null);
-      expect(response.body.data.userLogin.userLogin.error).toBe('Invalid credentials');
+      expect(response.body.data.userLogin.token).toBe(null);
+      expect(response.body.data.userLogin.success).toBe(null);
+      expect(response.body.data.userLogin.error).toBe('Invalid credentials');
       expect(response.status).toBe(200);
     });
   });
