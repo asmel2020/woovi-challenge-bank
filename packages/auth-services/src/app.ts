@@ -1,4 +1,4 @@
-import Koa, { Context } from 'koa';
+import Koa from 'koa';
 //@ts-ignore
 import Router from 'koa-router';
 import logger from 'koa-logger';
@@ -21,10 +21,6 @@ app.use(logger());
 
 app.use(cors());
 
-router.get('/', async (ctx: any) => {
-  ctx.body = 'Welcome to Relay Workshop';
-});
-
 router.all(
   '/graphiql',
   koaPlayground({
@@ -33,9 +29,12 @@ router.all(
   }),
 );
 
+router.get('/api', async (ctx: any) => {
+  ctx.body = renderGraphiQL({});
+});
+
 router.all('/graphql', async (ctx: any) => {
- 
-  const request = {
+  const request: any = {
     body: ctx.request.body,
     headers: ctx.req.headers,
     method: ctx.request.method,
@@ -52,8 +51,8 @@ router.all('/graphql', async (ctx: any) => {
       variables,
       request,
       schema,
-      contextFactory: () => {},
     });
+
     ctx.respond = false;
     sendResult(result, ctx.res);
   }
