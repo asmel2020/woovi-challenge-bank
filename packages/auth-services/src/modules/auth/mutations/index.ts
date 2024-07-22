@@ -1,5 +1,7 @@
-import userRegister from "./userRegister"
+import userRegister from './userRegister';
+import userLogin from './userLogin';
 
-export default { 
-    userRegister
-}
+export default {
+  userRegister,
+  userLogin,
+};
