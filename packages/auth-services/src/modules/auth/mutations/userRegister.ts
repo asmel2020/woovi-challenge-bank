@@ -24,20 +24,25 @@ export default mutationWithClientMutationId({
         error: 'Email already in use',
       };
 
-    const user = await new UserModel({
-      name,
-      email,
-      password,
-    }).save();
+    try {
+      const user = await new UserModel({
+        name,
+        email,
+        password,
+      }).save();
 
-    const tokenJWT = generateTokenJWT(user);
+      const tokenJWT = generateTokenJWT(user);
 
-    return {
-      token: tokenJWT,
-      id: user._id,
-      errors: 'Registration completed successfully',
-      error: null,
-    };
+      return {
+        token: tokenJWT,
+        id: user._id,
+        success: 'Registration completed successfully',
+      };
+    } catch (error: any) {
+      return {
+        error: error.message,
+      };
+    }
   },
   outputFields: {
     token: {

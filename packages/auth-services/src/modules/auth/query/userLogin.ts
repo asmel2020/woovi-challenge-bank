@@ -33,7 +33,7 @@ export const userLogin = {
 
             const tokenJWT = generateTokenJWT(user);
 
-            return { token: tokenJWT };
+            return { token: tokenJWT, success: 'Successful authentication' };
           },
         },
       }),

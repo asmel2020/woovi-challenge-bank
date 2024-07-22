@@ -12,7 +12,7 @@ const errorsField = {
   error: {
     type: GraphQLString,
     description: 'Default errors field resolver.',
-    resolve: ({ error }: { error: string | null }) => error,
+    resolve: ({ error }: any) => error,
   },
 };
 export { successField, errorsField };
