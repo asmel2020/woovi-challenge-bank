@@ -19,10 +19,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       hidden: true,
     },
-    balance:{
-      type:Number,
-      default:100000
-    }
+    balance: {
+      type: Number,
+      default: 100000,
+    },
   },
   {
     timestamps: {
@@ -61,8 +61,7 @@ userSchema.pre<IUser>('save', function encryptPasswordHook(next) {
         throw new GraphQLError(error.errors[0]);
       }
     }
-    this.email= this.email.trim().toLowerCase(),
-    this.password = this.encryptPassword(this.password);
+    (this.email = this.email.trim().toLowerCase()), (this.password = this.encryptPassword(this.password));
   }
   return next();
 });
