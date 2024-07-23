@@ -59,6 +59,7 @@
     "graphql-helix": "^1.13.0",
     "graphql-playground-middleware-koa": "^1.6.22",
     "graphql-relay": "^0.10.2",
+    "graphql-request": "6.1.0",
     "jsonwebtoken": "^9.0.2",
     "kcors": "^2.2.2",
     "koa": "^2.15.3",
