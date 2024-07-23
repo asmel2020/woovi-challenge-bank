@@ -1,9 +1,9 @@
 import configuration from '../../../config/configuration';
+import { Args } from '../../interfaces';
 import { IUserRegisterRespond, Respond } from '../interfaces/ILoginUserRespond.interfaces';
-import { IUserTest } from '../interfaces/IUserTest.interfaces';
 import { gql, GraphQLClient} from 'graphql-request';
 
-export const registerUser = async ({ name, email, password }: IUserTest): Promise<Respond> => {
+export const registerUser = async ({ name, email, password }: Args): Promise<Respond> => {
   const mutation = gql`
     mutation UserRegister {
         userRegister(input: { name: "${name}", email: "${email}", password: "${password}" }) {

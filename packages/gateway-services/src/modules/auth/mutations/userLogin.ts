@@ -2,6 +2,7 @@ import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { errorsField, successField } from '../../../common/helpers';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { loginUser } from '../../../common/schema';
+import { Args, IContext } from '../../../common/interfaces';
 export default mutationWithClientMutationId({
   name: 'userLogin',
   inputFields: {
@@ -12,7 +13,7 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async ({ email, password }, context) => loginUser({ email: email, password: password }),
+  mutateAndGetPayload: async ({ email, password }:Omit<Args,"name">, context:IContext) => loginUser({ email: email, password: password }),
 
   outputFields: {
     token: {
