@@ -18,6 +18,7 @@ class CustomEnvironment extends NodeEnvironment {
     await super.setup();
     await this.mongod.start();
     this.global.MONGO_URI= this.mongod.getUri();
+    this.global.AUTH_SERVICES_API_KEY="test"
   }
 
   async teardown() {
