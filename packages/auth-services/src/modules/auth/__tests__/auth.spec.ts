@@ -3,6 +3,7 @@ import app from '../../../app';
 import { clearDatabase, connectMongoose, disconnectMongoose } from '../../../../test/confingMongodbMemoryServer';
 
 import { registerUser, loginUser } from '../../../../test/schema';
+import configuration from '../../../config/configuration';
 
 const user = {
   name: 'user',
@@ -13,10 +14,10 @@ const user = {
   passwordError: 'asflsajdfsa',
 };
 
-const consult = (payload: { query: string; variables: any }) =>
+const consult = (payload: { query: string; variables: any }, authenticator: string) =>
   request(app.callback())
     .post('/graphql')
-    .set({ Accept: 'application/json', 'Content-Type': 'application/json' })
+    .set({ Accept: 'application/json', 'Content-Type': 'application/json', authenticator })
     .send(JSON.stringify(payload));
 
 beforeAll(connectMongoose);
@@ -41,8 +42,8 @@ describe('auth user', () => {
         query,
         variables,
       };
-
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
       expect(response.body.data.userRegister.success).toBe('Registration completed successfully');
       expect(response.body.data.userRegister.error).toBe(null);
@@ -63,7 +64,8 @@ describe('auth user', () => {
         variables,
       };
 
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
       expect(response.body.data.userRegister.success).toBe(null);
       expect(response.body.data.userRegister.error).toBe('Email already in use');
@@ -84,7 +86,8 @@ describe('auth user', () => {
         variables,
       };
 
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
       expect(response.body.data.userRegister.success).toBe(null);
       expect(response.body.data.userRegister.error).toBe(
@@ -107,7 +110,8 @@ describe('auth user', () => {
         variables,
       };
 
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
       expect(response.body.data.userRegister.success).toBe(null);
       expect(response.body.data.userRegister.error).toBe('email must be a valid email');
@@ -126,7 +130,8 @@ describe('auth user', () => {
         variables,
       };
 
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
       expect(typeof response.body.data.userLogin.token).toBe('string');
       expect(response.body.data.userLogin.success).toBe('Successful authentication');
@@ -144,9 +149,9 @@ describe('auth user', () => {
         variables,
       };
 
-      const response = await consult(payload);
+      const { AUTH_SERVICES_API_KEY }: any = global;
+      const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
-      
       expect(response.body.data.userLogin.token).toBe(null);
       expect(response.body.data.userLogin.success).toBe(null);
       expect(response.body.data.userLogin.error).toBe('Invalid credentials');

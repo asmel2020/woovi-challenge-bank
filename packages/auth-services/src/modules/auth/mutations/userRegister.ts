@@ -2,6 +2,7 @@ import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import UserModel from '../UserModel';
 import { errorsField, generateTokenJWT, successField } from '../../../common/helpers';
+import { Args, IContext } from '../../../common/interfaces';
 
 export default mutationWithClientMutationId({
   name: 'userRegister',
@@ -16,7 +17,13 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async ({ name, email, password }, context) => {
+  mutateAndGetPayload: async ({ name, email, password }: Args, context: IContext) => {
+    if (!context.isAuthApiKey) {
+      return {
+        error: 'Not authorized',
+      };
+    }
+
     const isExistUser = (await UserModel.countDocuments({ email: email.trim().toLowerCase() })) > 0;
 
     if (isExistUser)
