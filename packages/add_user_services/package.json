@@ -1,5 +1,5 @@
 {
-  "name": "add_user_services",
+  "name": "back-end",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
