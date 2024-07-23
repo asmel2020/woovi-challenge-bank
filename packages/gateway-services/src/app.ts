@@ -21,14 +21,6 @@ app.use(logger());
 
 app.use(cors());
 
-router.all(
-  '/graphiql',
-  koaPlayground({
-    endpoint: '/graphql',
-    subscriptionEndpoint: '/subscriptions',
-  }),
-);
-
 router.get('/api', async (ctx: any) => {
   ctx.body = renderGraphiQL({});
 });
