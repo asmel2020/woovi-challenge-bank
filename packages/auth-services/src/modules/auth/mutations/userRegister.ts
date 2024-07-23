@@ -17,9 +17,8 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async ({ name, email, password }:Args, context: IContext) => {
-    
-    if (context.isAuthApiKey) {
+  mutateAndGetPayload: async ({ name, email, password }: Args, context: IContext) => {
+    if (!context.isAuthApiKey) {
       return {
         error: 'Not authorized',
       };

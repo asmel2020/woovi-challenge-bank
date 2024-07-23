@@ -5,8 +5,6 @@ import { errorsField, generateTokenJWT, successField } from '../../../common/hel
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { Args, IContext } from '../../../common/interfaces';
 
-
-
 export default mutationWithClientMutationId({
   name: 'userLogin',
   inputFields: {
