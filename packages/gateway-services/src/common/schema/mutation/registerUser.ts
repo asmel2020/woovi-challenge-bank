@@ -14,7 +14,7 @@ export const registerUser = async ({ name, email, password }: IUserTest): Promis
     }
   `;
 
-  const { userRegister }: IUserRegisterRespond = await request(`${configuration.URL_SERVICES.URL_AUTH_SERVICES}/graphql`, mutation);
+  const { userRegister }: IUserRegisterRespond = await request(`${configuration.AUTH_SERVICES.URL_AUTH_SERVICES}/graphql`, mutation);
 
   return userRegister;
 };
