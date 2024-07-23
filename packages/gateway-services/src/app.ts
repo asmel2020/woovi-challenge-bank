@@ -21,10 +21,6 @@ app.use(logger());
 
 app.use(cors());
 
-router.get('/api', async (ctx: any) => {
-  ctx.body = renderGraphiQL({});
-});
-
 router.all('/graphql', async (ctx: any) => {
   const request: any = {
     body: ctx.request.body,
