@@ -18,9 +18,9 @@ export const loginUser = async ({ email, password }: Omit<IUserTest, 'name'>): P
     `;
 
 
-  const graphQLClient = new GraphQLClient(`${configuration.AUTH_SERVICES.URL_AUTH_SERVICES}/graphql`, {
+  const graphQLClient = new GraphQLClient(`${configuration.AUTH_SERVICES.AUTH_SERVICES_URL}/graphql`, {
     headers: {
-      hola: 'D',
+      authenticator: configuration.AUTH_SERVICES.AUTH_SERVICES_API_KEY,
     },
   });
 
