@@ -1,10 +1,8 @@
 import configuration from '../../../config/configuration';
+import { Args } from '../../interfaces';
 import { IUserLoginRespond, Respond } from '../interfaces/ILoginUserRespond.interfaces';
-import { IUserTest } from '../interfaces/IUserTest.interfaces';
-
 import { gql, GraphQLClient, request } from 'graphql-request';
-
-export const loginUser = async ({ email, password }: Omit<IUserTest, 'name'>): Promise<Respond> => {
+export const loginUser = async ({ email, password }: Omit<Args, 'name'>): Promise<Respond> => {
   
   const mutation = gql`
          mutation UserLogin {

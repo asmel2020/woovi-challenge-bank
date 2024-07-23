@@ -8,6 +8,7 @@ import koaPlayground from 'graphql-playground-middleware-koa';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
 
 import { schema } from './schema/schema';
+import { getApiKey } from './common/helpers';
 
 const router = new Router();
 
@@ -51,9 +52,10 @@ router.all('/graphql', async (ctx: any) => {
       variables,
       request,
       schema,
+      contextFactory: executionContext => getApiKey(request.headers.authenticator),
     });
-
     ctx.respond = false;
+
     sendResult(result, ctx.res);
   }
 });
