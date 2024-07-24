@@ -1,13 +1,26 @@
-import {  GraphQLString } from 'graphql';
+import UserType from '../UserType';
 
 const userData = {
   userData: {
-    type: GraphQLString,
-    resolve: (root: any, args: any, context: any) => {
-   /*    console.log(context)
-       */
-      return 'context.user.name';
+    type: UserType,
+    resolve: (root: any, args: any, { isAuthApiKey, user }: any) => {
+
+      if (!isAuthApiKey) {
+        return {
+          error: 'Not authorized',
+        };
+      }
+
+      if (!user) {
+        return {
+          error: 'Not authorized',
+        };
+      }
+
+      return { name: user.name, email: user.email, balance: user.balance };
+
     },
   },
 };
-export default userData;    
+
+export default userData;

@@ -6,9 +6,8 @@ import cors from 'kcors';
 import bodyParser from 'koa-bodyparser';
 import koaPlayground from 'graphql-playground-middleware-koa';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
-
 import { schema } from './schema/schema';
-import { getApiKey } from './common/helpers';
+import { apiKeyVerification } from './common/helpers';
 
 const router = new Router();
 
@@ -17,7 +16,6 @@ const app = new Koa();
 app.use(bodyParser());
 
 app.on('error', (err: any) => console.log('app error: ', err));
-
 app.use(logger());
 
 app.use(cors());
@@ -46,16 +44,15 @@ router.all('/graphql', async (ctx: any) => {
     ctx.body = renderGraphiQL({});
   } else {
     const { operationName, query, variables } = getGraphQLParameters(request);
-    const result = await processRequest({
+    const result: any = await processRequest({
       operationName,
       query,
       variables,
       request,
       schema,
-      contextFactory: executionContext => getApiKey(request.headers.authenticator),
+      contextFactory: executionContext => ({ isAuthApiKey: apiKeyVerification(request.headers['api-key-x']) }),
     });
     ctx.respond = false;
-
     sendResult(result, ctx.res);
   }
 });

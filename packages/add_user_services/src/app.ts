@@ -8,7 +8,8 @@ import koaPlayground from 'graphql-playground-middleware-koa';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
 
 import { schema } from './schema/schema';
-import { getApiKey } from './common/helpers';
+import { apiKeyVerification } from './common/helpers';
+import { getUser } from './common/helpers/getUser';
 
 const router = new Router();
 
@@ -35,12 +36,14 @@ router.get('/api', async (ctx: any) => {
 });
 
 router.all('/graphql', async (ctx: any) => {
-  const request: any = {
+  const request = {
     body: ctx.request.body,
     headers: ctx.req.headers,
     method: ctx.request.method,
     query: ctx.request.query,
   };
+
+  const user = await getUser(ctx.req.headers.authorization);
 
   if (shouldRenderGraphiQL(request)) {
     ctx.body = renderGraphiQL({});
@@ -52,7 +55,7 @@ router.all('/graphql', async (ctx: any) => {
       variables,
       request,
       schema,
-      contextFactory: executionContext => getApiKey(request.headers.authenticator),
+      contextFactory: executionContext => ({ isAuthApiKey: apiKeyVerification(request.headers['api-key-x']), user }),
     });
     ctx.respond = false;
 

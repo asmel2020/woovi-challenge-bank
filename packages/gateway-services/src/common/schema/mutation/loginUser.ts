@@ -1,8 +1,10 @@
 import configuration from '../../../config/configuration';
-import { Args } from '../../interfaces';
-import { IUserLoginRespond, Respond } from '../interfaces/ILoginUserRespond.interfaces';
-import { gql, GraphQLClient, request } from 'graphql-request';
-export const loginUser = async ({ email, password }: Omit<Args, 'name'>) => {
+import { Args,IContext,IRequest } from '../../interfaces';
+import { IUserLoginRespond } from '../interfaces/ILoginUserRespond.interfaces';
+import { gql, GraphQLClient,  } from 'graphql-request';
+
+export const loginUser = async ({ email, password }: Omit<Args, 'name'>, {req}: IContext) => {
+
   const mutation = gql`
          mutation UserLogin {
             userLogin(input: { email: "${email}", password: "${password}" }) {
@@ -16,7 +18,8 @@ export const loginUser = async ({ email, password }: Omit<Args, 'name'>) => {
 
   const graphQLClient = new GraphQLClient(`${configuration.AUTH_SERVICES.AUTH_SERVICES_URL}/graphql`, {
     headers: {
-      authenticator: configuration.AUTH_SERVICES.AUTH_SERVICES_API_KEY,
+      'api-key-x': configuration.AUTH_SERVICES.AUTH_SERVICES_API_KEY,
+      authorization: req.headers.authorization || '',
     },
   });
 

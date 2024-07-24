@@ -37,6 +37,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  balance:number;
   authenticate: (plainTextPassword: string) => boolean;
   encryptPassword: (password: string | undefined) => string;
   createdAt: Date;
