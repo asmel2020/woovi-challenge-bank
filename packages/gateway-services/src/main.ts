@@ -5,8 +5,12 @@ import { schema } from './schema/schema';
 import configuration from './config/configuration';
 import app from './app';
 
+
+
+import pubSub, { EVENTS } from './common/helpers/pubSub';
+
 async function bootstrap() {
-  
+
   const server = createServer(app.callback());
 
   server.listen(configuration.PORT, () => console.log(`server running on port :${configuration.PORT}`));
@@ -14,7 +18,6 @@ async function bootstrap() {
   const graphqlWs = new ws.Server({ server });
 
   useServer({ schema }, graphqlWs);
-
 }
 
 bootstrap();
