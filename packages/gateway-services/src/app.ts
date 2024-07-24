@@ -4,7 +4,7 @@ import Router from 'koa-router';
 import logger from 'koa-logger';
 import cors from 'kcors';
 import bodyParser from 'koa-bodyparser';
-/* import koaPlayground from 'graphql-playground-middleware-koa'; */
+import koaPlayground from 'graphql-playground-middleware-koa';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
 
 import { schema } from './schema/schema';
@@ -20,6 +20,14 @@ app.on('error', (err: any) => console.log('app error: ', err));
 app.use(logger());
 
 app.use(cors());
+
+router.all(
+  '/graphql',
+  koaPlayground({
+    endpoint: '/graphql',
+    subscriptionEndpoint: '/subscriptions',
+  }),
+);
 
 router.all('/graphql', async (ctx: any) => {
   const request= {

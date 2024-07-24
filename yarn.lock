@@ -1785,6 +1785,13 @@
   dependencies:
     "@types/webidl-conversions" "*"
 
+"@types/ws@^8.5.11":
+  version "8.5.11"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.5.11.tgz#90ad17b3df7719ce3e6bc32f83ff954d38656508"
+  integrity sha512-4+q7P5h3SpJxaBft0Dzpbr6lmMaqh0Jr2tbhJZ/luAwvD7ohSCniYkwz/pLxuT2h0EOa6QADgJj1Ko+TzRfZ+w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/yargs-parser@*":
   version "21.0.3"
   resolved "https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-21.0.3.tgz"
@@ -3773,6 +3780,11 @@ graphql-playground-middleware-koa@^1.6.22:
   dependencies:
     graphql-playground-html "^1.6.30"
 
+graphql-relay-subscription@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-relay-subscription/-/graphql-relay-subscription-1.0.0.tgz#70fc09bc1d130e84ad82d11438c7bdc1ea5b017c"
+  integrity sha512-ga+wEJEMf4MB4lCxLNjyr8BIC7bhVA0SMzC8+oKIW9ny9R7RPSEz5yT/BUJO26ekGRDTQY8bBwrR+iJl2dq11Q==
+
 graphql-relay@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.10.2.tgz#a1cd0e4b63e671a08da6c021ec033086a4887f6a"
@@ -3785,6 +3797,11 @@ graphql-request@6.1.0:
   dependencies:
     "@graphql-typed-document-node/core" "^3.2.0"
     cross-fetch "^3.1.5"
+
+graphql-ws@^5.16.0:
+  version "5.16.0"
+  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.16.0.tgz#849efe02f384b4332109329be01d74c345842729"
+  integrity sha512-Ju2RCU2dQMgSKtArPbEtsK5gNLnsQyTNIo/T7cZNp96niC1x0KdJNZV0TIoilceBPQwfb5itrGl8pkFeOUMl4A==
 
 graphql@^16.9.0:
   version "16.9.0"
@@ -7799,6 +7816,11 @@ write-pkg@4.0.0:
     sort-keys "^2.0.0"
     type-fest "^0.4.1"
     write-json-file "^3.2.0"
+
+ws@^8.18.0:
+  version "8.18.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.0.tgz#0d7505a6eafe2b0e712d232b42279f53bc289bbc"
+  integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
 
 xss@^1.0.6:
   version "1.0.15"
