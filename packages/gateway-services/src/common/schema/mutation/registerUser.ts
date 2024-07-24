@@ -16,7 +16,7 @@ export const registerUser = async ({ name, email, password }: Args) => {
 
   const graphQLClient = new GraphQLClient(`${configuration.AUTH_SERVICES.AUTH_SERVICES_URL}/graphql`, {
     headers: {
-      authenticator: configuration.AUTH_SERVICES.AUTH_SERVICES_API_KEY,
+      'api-key-x': configuration.AUTH_SERVICES.AUTH_SERVICES_API_KEY,
     },
   });
 

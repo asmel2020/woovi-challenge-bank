@@ -1,19 +1,9 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
+import UserQuery from '../modules/user/query';
 
 export default new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
-    node: {
-      type: new GraphQLObjectType({
-        name: 'Node',
-        fields: () => ({
-          node: {
-            type: GraphQLString,
-            resolve: async (_, ctx) => {},
-          },
-        }),
-      }),
-      resolve: () => ({}),
-    },
+    ...UserQuery,
   }),
 });

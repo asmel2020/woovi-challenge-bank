@@ -39,7 +39,6 @@ export default mutationWithClientMutationId({
     }
 
     const tokenJWT = generateTokenJWT(user);
-
     return { token: tokenJWT, success: 'Successful authentication' };
   },
   outputFields: {

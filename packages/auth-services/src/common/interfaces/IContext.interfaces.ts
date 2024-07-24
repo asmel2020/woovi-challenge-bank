@@ -1,3 +1,3 @@
 export interface IContext {
-    isAuthApiKey: boolean;
-  }
+  isAuthApiKey: boolean;
+}
