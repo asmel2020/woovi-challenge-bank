@@ -4,7 +4,6 @@ const userData = {
   userData: {
     type: UserType,
     resolve: (root: any, args: any, { isAuthApiKey, user }: any) => {
-
       if (!isAuthApiKey) {
         return {
           error: 'Not authorized',
@@ -18,7 +17,6 @@ const userData = {
       }
 
       return { name: user.name, email: user.email, balance: user.balance };
-
     },
   },
 };
