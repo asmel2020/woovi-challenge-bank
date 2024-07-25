@@ -32,7 +32,7 @@ export const userData = subscriptionWithClientId({
     },
   },
   subscribe: (input, context) => {
-    const nameEventTrigger = `${EVENTS.POST.NEW}.${context.userID}`;
+    const nameEventTrigger = `${EVENTS.USER.DATA}.${context.userID}`;
 
     const query = `subscription UserData {
                         userData(input: { clientSubscriptionId: "asdasd" }) {
@@ -46,12 +46,16 @@ export const userData = subscriptionWithClientId({
     }
 
    `;
+   
+    const variables = {};
 
     connectWebsocket({
       nameEventTrigger: nameEventTrigger,
       query,
       urlWebsocket: 'ws://localhost:8002/subscriptions',
+      authorization: context.request.headers.authorization,
       userID: context.userID,
+      variables,
     });
 
     return pubSub.asyncIterator(nameEventTrigger);

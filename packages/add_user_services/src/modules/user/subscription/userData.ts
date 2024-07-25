@@ -1,15 +1,18 @@
 import { subscriptionWithClientId } from 'graphql-relay-subscription';
 import UserType from '../UserType';
 import pubSub, { EVENTS } from '../../../common/helpers/pubSub';
-import { clientServer } from '../../../app';
+import { mapUserData } from '../../../app';
 
-type userData = {
-  id: string;
-  name: string;
-  email: string;
-  balance: number;
-  error: string;
-};
+
+
+interface userData {
+  userData: {
+    name: string;
+    email: string;
+    balance: number;
+    error: string;
+  };
+}
 
 export const userData = subscriptionWithClientId({
   name: 'userData',
@@ -20,16 +23,39 @@ export const userData = subscriptionWithClientId({
     },
   },
   subscribe: (input, context) => {
-    const nameEventTrigger = `${EVENTS.POST.NEW}.${context.userID}`;
-    return pubSub.asyncIterator(nameEventTrigger);
+    const nameEventTrigger = `${EVENTS.USER.DATA}.${context.user.id}`;
+
+    let publish = mapUserData.get(context.user.id);
+
+    if (!publish) {
+      publish = pubSub.asyncIterator(nameEventTrigger);
+
+      const initialData = {
+        name: context.user.name,
+        email: context.user.email,
+        balance: context.user.balance,
+        error: null,
+      };
+
+      const initialPayload = {
+        userData: initialData,
+      };
+
+      setTimeout(() => {
+        pubSub.publish(nameEventTrigger, initialPayload);
+      }, 0); 
+
+      mapUserData.set(context.userID, publish);
+    }
+
+    return pubSub.asyncIterator(nameEventTrigger);;
   },
   getPayload: (obj: userData) => {
-    console.log('obj', obj);
     return {
-      name: obj.name,
-      email: obj.email,
-      balance: obj.balance,
-      error: obj.error,
+      name: obj.userData.name,
+      email: obj.userData.email,
+      balance: obj.userData.balance,
+      error: obj.userData.error,
     };
   },
 });

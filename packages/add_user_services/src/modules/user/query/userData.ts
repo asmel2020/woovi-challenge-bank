@@ -1,4 +1,3 @@
-import pubSub, { EVENTS } from '../../../common/helpers/pubSub';
 import UserType from '../UserType';
 
 const userData = {
@@ -16,12 +15,6 @@ const userData = {
           error: 'Not authorized',
         };
       }
-
-      pubSub.publish(`${EVENTS.POST.NEW}.${user._id}`, {
-        name: user.name,
-        email: user.email,
-        balance: user.balance,
-      });
 
       return { name: user.name, email: user.email, balance: user.balance };
     },

@@ -13,8 +13,8 @@ import { getUser } from './common/helpers/getUser';
 const router = new Router();
 
 const app = new Koa();
-// create map to store client websocket connection
-export const clientServer = new Map();
+
+export const mapUserData = new Map<string, AsyncIterator<any>>();
 
 app.use(bodyParser());
 
@@ -25,23 +25,21 @@ app.use(logger());
 app.use(cors());
 
 router.all(
-  '/graphqla',
+  '/graphql',
   koaPlayground({
     endpoint: '/graphql',
     subscriptionEndpoint: '/subscriptions',
-
   }),
 );
 
 router.all('/graphql', async (ctx: any) => {
-  
   const request = {
     body: ctx.request.body,
     headers: ctx.req.headers,
     method: ctx.request.method,
     query: ctx.request.query,
   };
-
+   
   const user = await getUser(ctx.req.headers.authorization);
 
   if (shouldRenderGraphiQL(request)) {
