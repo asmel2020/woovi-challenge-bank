@@ -6,7 +6,6 @@ import cors from 'kcors';
 import bodyParser from 'koa-bodyparser';
 import koaPlayground from 'graphql-playground-middleware-koa';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
-
 import { schema } from './schema/schema';
 import { apiKeyVerification } from './common/helpers';
 import { getUser } from './common/helpers/getUser';
@@ -14,6 +13,8 @@ import { getUser } from './common/helpers/getUser';
 const router = new Router();
 
 const app = new Koa();
+
+export const mapUserData = new Map<string, AsyncIterator<any>>();
 
 app.use(bodyParser());
 
@@ -24,16 +25,12 @@ app.use(logger());
 app.use(cors());
 
 router.all(
-  '/graphiql',
+  '/graphql',
   koaPlayground({
     endpoint: '/graphql',
     subscriptionEndpoint: '/subscriptions',
   }),
 );
-
-router.get('/api', async (ctx: any) => {
-  ctx.body = renderGraphiQL({});
-});
 
 router.all('/graphql', async (ctx: any) => {
   const request = {
@@ -42,7 +39,7 @@ router.all('/graphql', async (ctx: any) => {
     method: ctx.request.method,
     query: ctx.request.query,
   };
-
+   
   const user = await getUser(ctx.req.headers.authorization);
 
   if (shouldRenderGraphiQL(request)) {
