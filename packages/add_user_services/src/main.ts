@@ -5,18 +5,35 @@ import configuration from './config/configuration';
 import { connectDatabase } from './common/database';
 import { schema } from './schema/schema';
 import app from './app';
-import pubSub, { EVENTS } from './common/helpers/pubSub';
+
+import { GraphQLError } from 'graphql';
 
 async function bootstrap() {
   await connectDatabase();
-  
-  setInterval(async () => {
-    await pubSub.publish(EVENTS.POST.NEW, { id: 'input.id' });
-  }, 1000);
+
   const server = createServer(app.callback());
   server.listen(configuration.PORT, () => console.log(`server running on port :${configuration.PORT}`));
   const graphqlWs = new ws.Server({ server });
-  useServer({ schema }, graphqlWs);
+  useServer(
+    {
+      schema,
+      context: (ctx, msg, args) => {
+        const userID = ctx.connectionParams?.id || null;
+
+        if (!userID) {
+          throw new GraphQLError('Not authorized');
+        }
+        return { userID };
+      },
+      onClose: (ctx: any, msg, args) => {
+        console.log('onClose');
+      },
+      onError: (ctx: any, msg, args) => {
+        console.log('onError');
+      },
+    },
+    graphqlWs,
+  );
 }
 
 bootstrap();

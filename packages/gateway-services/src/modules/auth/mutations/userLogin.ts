@@ -3,6 +3,7 @@ import { errorsField, successField } from '../../../common/helpers';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { loginUser } from '../../../common/schema';
 import { Args ,IContext,IRequest} from '../../../common/interfaces';
+import pubSub, { EVENTS } from '../../../common/helpers/pubSub';
 
 export default mutationWithClientMutationId({
   name: 'userLogin',
@@ -14,7 +15,12 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async (args: Omit<Args, 'name'>, context: IContext) => loginUser(args, context),
+  mutateAndGetPayload: async (args: Omit<Args, 'name'>, context: IContext) => {
+
+
+   /*  await pubSub.publish(`${EVENTS.POST.NEW}.${args.email}`, { id: args.email }); */
+    return loginUser(args, context)
+  },
 
   outputFields: {
     token: {
