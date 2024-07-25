@@ -3,7 +3,6 @@ import app from '../../../app';
 import { clearDatabase, connectMongoose, disconnectMongoose } from '../../../../test/confingMongodbMemoryServer';
 
 import { registerUser, loginUser } from '../../../../test/schema';
-import configuration from '../../../config/configuration';
 
 const user = {
   name: 'user',
@@ -17,7 +16,7 @@ const user = {
 const consult = (payload: { query: string; variables: any }, authenticator: string) =>
   request(app.callback())
     .post('/graphql')
-    .set({ Accept: 'application/json', 'Content-Type': 'application/json', authenticator })
+    .set({ Accept: 'application/json', 'Content-Type': 'application/json', 'api-key-x':authenticator })
     .send(JSON.stringify(payload));
 
 beforeAll(connectMongoose);
@@ -42,9 +41,12 @@ describe('auth user', () => {
         query,
         variables,
       };
+     
       const { AUTH_SERVICES_API_KEY }: any = global;
+      console.log(AUTH_SERVICES_API_KEY);
       const response = await consult(payload, AUTH_SERVICES_API_KEY);
 
+      
       expect(response.body.data.userRegister.success).toBe('Registration completed successfully');
       expect(response.body.data.userRegister.error).toBe(null);
       expect(response.status).toBe(200);
