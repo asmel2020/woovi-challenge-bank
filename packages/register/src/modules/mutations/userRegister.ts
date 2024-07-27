@@ -4,7 +4,8 @@ import jwt from 'jsonwebtoken';
 import { errorsField, successField } from '../../utils';
 
 import { UserModel } from '@bank/models';
-import { Args, IContext } from '../interfaces/interfaces';
+import { Args } from '../interfaces/args.interfaces';
+import { IContext } from '../interfaces/IContext.interfaces';
 
 export default mutationWithClientMutationId({
   name: 'userRegister',
@@ -21,11 +22,6 @@ export default mutationWithClientMutationId({
   },
   mutateAndGetPayload: async (args: Args, context: IContext) => {
     const { email, password, name } = args;
-    if (!context.isAuthApiKey)
-      return {
-        error: 'Not authorized'
-      };
-
     const isExistUser = (await UserModel.countDocuments({ email: email.trim().toLowerCase() })) > 0;
 
     if (isExistUser)

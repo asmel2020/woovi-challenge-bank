@@ -26,7 +26,8 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "@bank/register": "1.0.0",
+    "@bank/register": "*",
+    "@bank/logger": "*",
     "@types/koa-bodyparser": "^4.3.12",
     "graphql": "^16.9.0",
     "graphql-helix": "^1.13.0",

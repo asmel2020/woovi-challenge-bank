@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "npx lerna run build --scope={@bank/models,@bank/register}",
+    "build": "npx lerna run build --scope={@bank/models,@bank/register,@bank/login}",
     "start:dev": "npx lerna run start:dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",

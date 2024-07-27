@@ -14,11 +14,6 @@
     "experimentalDecorators": true,
     "sourceMap": true
   },
-  "exclude": [
-    "node_modules",
-    "src/**/*.spec.ts",
-    "src/**/__tests__/**/*",
-    "src/modules/*/fixture/*",
-    "test/**/*"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
 }
