@@ -12,13 +12,14 @@ const userSchema = new mongoose.Schema(
       required: true,
       index: true
     },
-    password: {
-      type: String,
-      hidden: true
-    },
     balance: {
       type: Number,
       default: 100000
+    },
+    password: {
+      type: String,
+      required: true,
+      hidden: true
     }
   },
   {
@@ -34,6 +35,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  balance: number;
   authenticate: (plainTextPassword: string) => boolean;
   encryptPassword: (password: string | undefined) => string;
   createdAt: Date;
