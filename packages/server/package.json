@@ -30,6 +30,7 @@
   "dependencies": {
     "@bank/register": "*",
     "@bank/login": "*",
+    "@bank/helpers": "*",
     "@types/koa-bodyparser": "^4.3.12",
     "graphql": "^16.9.0",
     "graphql-helix": "^1.13.0",

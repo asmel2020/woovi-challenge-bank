@@ -1,4 +1,4 @@
-import { errorsField, successField } from '@bank/helpers';
+import { configurations, errorsField, successField } from '@bank/helpers';
 import { UserModel } from '@bank/models';
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
@@ -34,7 +34,7 @@ export default mutationWithClientMutationId({
         password
       }).save();
 
-      const tokenJWT = jwt.sign({ id: user._id }, 'process.env.JWT_SECRET');
+      const tokenJWT = jwt.sign({ id: user._id }, configurations.JWT_SECRET);
 
       return {
         token: tokenJWT,
