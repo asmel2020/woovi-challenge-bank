@@ -3,7 +3,7 @@ import { GraphQLString } from 'graphql';
 const successField = {
   success: {
     type: GraphQLString,
-    description: 'Default success field resolver.',
+    description: 'Default success field resolver. ',
     resolve: ({ success }: any) => success
   }
 };
