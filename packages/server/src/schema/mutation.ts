@@ -1,6 +1,6 @@
-import { GraphQLObjectType } from 'graphql';
-import { userRegister } from '@bank/register';
 import { userLogin } from '@bank/login';
+import { userRegister } from '@bank/register';
+import { GraphQLObjectType } from 'graphql';
 export default new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({

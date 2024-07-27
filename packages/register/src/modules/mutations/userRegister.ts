@@ -1,9 +1,8 @@
+import { errorsField, successField } from '@bank/helpers';
+import { UserModel } from '@bank/models';
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import jwt from 'jsonwebtoken';
-import { errorsField, successField } from '@bank/helpers';
-
-import { UserModel } from '@bank/models';
 import { Args } from '../interfaces/args.interfaces';
 
 export default mutationWithClientMutationId({
@@ -19,7 +18,7 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString)
     }
   },
-  mutateAndGetPayload: async (args: Args, context) => {
+  mutateAndGetPayload: async (args: Args, _) => {
     const { email, password, name } = args;
     const isExistUser = (await UserModel.countDocuments({ email: email.trim().toLowerCase() })) > 0;
 
