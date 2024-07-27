@@ -85,7 +85,7 @@ export default [
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['**/src']
+          patterns: ['@bank/b*/src']
         }
       ]
     }

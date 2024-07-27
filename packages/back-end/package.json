@@ -1,9 +1,11 @@
 {
-  "name": "server",
+  "name": "@bank/back-end",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc --build tsconfig.json",
     "build:watch": "tsc --build tsconfig.json --watch",
     "test": "jest --coverage"
   },
