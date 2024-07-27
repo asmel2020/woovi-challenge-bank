@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "es6",
+    "rootDir": "./packages",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@bank/*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules"]
+}

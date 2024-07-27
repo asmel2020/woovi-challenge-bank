@@ -14,11 +14,7 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "declarationMap": true
   },
   "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
 }
