@@ -7,7 +7,7 @@
     "start:dev": "npx lerna run start:dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "prettier": "prettier --write **/src/**/*.ts && prettier --write **/src/**/*.tsx",
+    "prettier": "prettier --write **/src/**/*.ts",
     "jest:auth": "npx lerna run jest --scope=auth-services",
     "prepare": "husky",
     "commitlint": "commitlint --edit"

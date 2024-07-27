@@ -16,6 +16,6 @@
     "declaration": true, // Genera archivos de declaración (*.d.ts)
     "declarationMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test"],
   "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
 }

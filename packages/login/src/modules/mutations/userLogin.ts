@@ -3,7 +3,7 @@ import { UserModel } from '@bank/models';
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import jwt from 'jsonwebtoken';
-import { Args } from './interfaces/args.interfaces';
+import { Args } from '../interfaces/args.interfaces';
 
 export default mutationWithClientMutationId({
   name: 'userLogin',
