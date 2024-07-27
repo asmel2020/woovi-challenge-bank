@@ -5,6 +5,6 @@ import subscription from './subscription';
 
 export const schema = new GraphQLSchema({
   mutation,
-  query,
-  subscription
+  query
+  /*  subscription */
 });

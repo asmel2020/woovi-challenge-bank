@@ -1,5 +1,5 @@
 {
-  "name": "@bank/register",
+  "name": "@bank/login",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,7 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@bank/models": "1.0.0",
+    "@bank/models": "*",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
@@ -22,7 +22,6 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/mocha": "^10.0.7",
     "jest": "^29.7.0",
-    "rimraf": "^6.0.1",
     "ts-jest": "^29.2.3",
     "typescript": "^5.5.3"
   }
