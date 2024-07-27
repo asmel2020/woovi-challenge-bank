@@ -2,9 +2,12 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "npx lerna run build --scope={@bank/models,@bank/register,@bank/login,@bank/helpers,'@bank/server'} --stream",
+    "webpack": "npx webpack --config webpack/webpack.config.js",
+    "build": "npx lerna run build --scope={@bank/models,@bank/register,@bank/login,@bank/helpers,'@bank/server'} --stream && yarn webpack",
     "dev:nodemon": "nodemon --watch",
     "start:dev": "npx lerna run start:dev",
+    "start": "npx lerna run start --scope=@bank/server",
+    "test": "npx lerna run test --scope={@bank/models,@bank/server} --stream",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --write **/src/**/*.ts",
@@ -16,10 +19,13 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.25.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.7.0",
     "@types/eslint-config-prettier": "^6.11.3",
+    "babel-loader": "^9.1.3",
     "eslint": "^9.7.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -28,7 +34,11 @@
     "lerna": "^8.1.7",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
+    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript-eslint": "^7.17.0"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
   }
 }

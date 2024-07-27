@@ -1,11 +1,12 @@
 {
   "name": "@bank/server",
   "version": "1.0.0",
-  "main": "dist/main.js",
+  "private": true,
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc --build tsconfig.json",
     "build:watch": "tsc --build tsconfig.json --watch",
+    "start": "node dist/main.js",
     "test": "jest --coverage",
     "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts"
   },
