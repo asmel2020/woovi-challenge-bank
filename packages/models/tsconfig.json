@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "declaration": true, // Genera archivos de declaración (*.d.ts)
+    "declarationMap": true
+  },
+  "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
+}
