@@ -5,7 +5,6 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import Router from 'koa-router';
-
 import { schema } from './schema/schema';
 
 const router = new Router();
