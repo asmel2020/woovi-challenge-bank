@@ -1,11 +1,10 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import jwt from 'jsonwebtoken';
-import { errorsField, successField } from '../../utils';
+import { errorsField, successField } from '@bank/helpers';
 
 import { UserModel } from '@bank/models';
 import { Args } from '../interfaces/args.interfaces';
-import { IContext } from '../interfaces/IContext.interfaces';
 
 export default mutationWithClientMutationId({
   name: 'userRegister',
@@ -20,7 +19,7 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString)
     }
   },
-  mutateAndGetPayload: async (args: Args, context: IContext) => {
+  mutateAndGetPayload: async (args: Args, context) => {
     const { email, password, name } = args;
     const isExistUser = (await UserModel.countDocuments({ email: email.trim().toLowerCase() })) > 0;
 

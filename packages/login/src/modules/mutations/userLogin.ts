@@ -1,6 +1,6 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
-import { errorsField, successField } from '../../utils';
+import { errorsField, successField } from '@bank/helpers';
 
 import jwt from 'jsonwebtoken';
 import { UserModel } from '@bank/models';

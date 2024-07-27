@@ -14,7 +14,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@bank/helpers": "*",
     "@bank/models": "1.0.0",
+    "graphql": "^16.9.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {

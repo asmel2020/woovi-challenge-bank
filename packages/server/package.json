@@ -1,9 +1,10 @@
 {
   "name": "@bank/server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc --build tsconfig.json",
     "build:watch": "tsc --build tsconfig.json --watch",
     "test": "jest --coverage",
     "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts"
@@ -13,6 +14,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "rimraf": "^6.0.1",
     "@types/jest": "^29.5.12",
     "@types/kcors": "^2.2.8",
     "@types/koa": "^2.15.0",
@@ -27,7 +29,7 @@
   },
   "dependencies": {
     "@bank/register": "*",
-    "@bank/logger": "*",
+    "@bank/login": "*",
     "@types/koa-bodyparser": "^4.3.12",
     "graphql": "^16.9.0",
     "graphql-helix": "^1.13.0",
@@ -37,6 +39,7 @@
     "koa-bodyparser": "^4.4.1",
     "koa-logger": "^3.2.1",
     "koa-router": "^12.0.1",
-    "mongoose": "^8.5.1"
+    "mongoose": "^8.5.1",
+    "rimraf": "^6.0.1"
   }
 }

@@ -1,0 +1,7 @@
+{
+    "watch": [
+        "./packages/**/src"
+    ],
+    "ext": "ts",
+    "exec": "yarn build && node ./packages/server/dist/main.js"
+}
