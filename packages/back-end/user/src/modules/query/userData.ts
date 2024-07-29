@@ -1,3 +1,4 @@
+import { EVENTS, pubSub } from '@bank/helpers';
 import { UserType } from '@bank/models';
 
 export const userDataQuery: any = {
@@ -7,7 +8,6 @@ export const userDataQuery: any = {
       return {
         error: 'Not authorized'
       };
-
     return { name: context.user.name, email: context.user.email, balance: context.user.balance };
   }
 };
