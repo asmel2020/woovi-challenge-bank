@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "webpack": "npx webpack --config webpack/webpack.config.js",
-    "build": "npx lerna run build --scope={@bank/models,@bank/register,@bank/login,@bank/helpers,'@bank/server'} --stream && yarn webpack",
+    "build": "npx lerna run build --scope={@bank/helpers,@bank/models,@bank/user,@bank/register,@bank/login,'@bank/server'} --stream && yarn webpack",
     "dev:nodemon": "nodemon --watch",
     "start:dev": "npx lerna run start:dev",
     "start": "npx lerna run start --scope=@bank/server",
@@ -16,7 +16,9 @@
     "commitlint": "commitlint --edit"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/back-end/*",
+    "packages/**/docs",
+    "packages/**/front-end/*"
   ],
   "devDependencies": {
     "@babel/core": "^7.24.9",
