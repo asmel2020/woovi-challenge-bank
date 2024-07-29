@@ -16,6 +16,6 @@
     "declaration": true,
     "declarationMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../server/config"],
   "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
 }

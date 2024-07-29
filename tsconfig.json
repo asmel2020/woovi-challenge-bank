@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@bank/*": ["packages/b*/src"]
+      "@bank/*": ["packages/back-end/b*/src"]
     }
   },
   "include": ["packages/**/*"],

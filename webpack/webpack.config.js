@@ -3,15 +3,15 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   target: 'node',
-  entry: './packages/server/src/main.ts', // Adjust the entry point as needed
+  entry: './packages/back-end/server/src/main.ts',
   output: {
-    path: path.resolve(__dirname, '../packages/server/dist'),
+    path: path.resolve(__dirname, '../packages/back-end/server/dist'),
     filename: 'main.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@bank/server': path.resolve(__dirname, '../packages/server/src')
+      '@bank/server': path.resolve(__dirname, '../packages/back-end/server/src')
     },
     fallback: {
       crypto: false
@@ -36,6 +36,5 @@ module.exports = {
         }
       }
     ]
-  },
-  externals: ['mongodb']
+  }
 };

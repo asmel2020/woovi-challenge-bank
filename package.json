@@ -16,7 +16,9 @@
     "commitlint": "commitlint --edit"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/back-end/*",
+    "packages/**/docs",
+    "packages/**/front-end/*"
   ],
   "devDependencies": {
     "@babel/core": "^7.24.9",
