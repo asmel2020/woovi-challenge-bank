@@ -1,3 +1,3 @@
 import UserModel, { IUser } from './models/UserModel';
-
-export { UserModel, IUser };
+import UserType from './typesGraph/UserType';
+export { UserModel, IUser, UserType };

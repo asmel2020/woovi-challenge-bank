@@ -1,7 +1,7 @@
 {
-  "name": "@bank/template",
+  "name": "@bank/user",
   "version": "1.0.0",
-  "main": "./dist/index.js",
+  "main": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
@@ -14,11 +14,16 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "rimraf": "^6.0.1",
     "@types/jest": "^29.5.12",
     "@types/mocha": "^10.0.7",
     "jest": "^29.7.0",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.2.3",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "graphql-relay-subscription": "^1.0.0",
+    "@bank/helpers": "*",
+    "@bank/models": "*"
   }
 }

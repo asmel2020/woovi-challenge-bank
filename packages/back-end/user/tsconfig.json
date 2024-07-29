@@ -13,16 +13,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "declaration": true, // Genera archivos de declaración (*.d.ts)
+    "declaration": true,
     "declarationMap": true
   },
-  "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "src/**/*.spec.ts",
-    "src/**/__tests__/**/*",
-    "src/modules/*/fixture/*",
-    "test/**/*",
-    "test"
-  ]
+  "include": ["src/**/*", "../helpers/src/UserType.ts"],
+  "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/__tests__/**/*", "src/modules/*/fixture/*", "test/**/*"]
 }

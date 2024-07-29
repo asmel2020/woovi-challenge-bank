@@ -6,6 +6,7 @@ import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import Router from 'koa-router';
 import { schema } from './schema/schema';
+import { getUser } from '@bank/helpers';
 
 const router = new Router();
 
@@ -35,6 +36,8 @@ router.all('/graphql', async (ctx: any) => {
     query: ctx.request.query
   };
 
+  const user = await getUser(ctx.request.headers.authorization);
+
   if (shouldRenderGraphiQL(request)) ctx.body = renderGraphiQL({});
   else {
     const { operationName, query, variables } = getGraphQLParameters(request);
@@ -46,7 +49,7 @@ router.all('/graphql', async (ctx: any) => {
       request,
       schema,
       contextFactory() {
-        return { req: request };
+        return { req: request, user };
       }
     });
 

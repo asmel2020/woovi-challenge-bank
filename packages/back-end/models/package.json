@@ -14,7 +14,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@bank/helpers": "*",
     "@faker-js/faker": "^8.4.1",
     "@types/jest": "^29.5.12",
     "@types/mocha": "^10.0.7",

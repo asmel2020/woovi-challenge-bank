@@ -35,6 +35,7 @@
     "@bank/helpers": "*",
     "@bank/login": "*",
     "@bank/register": "*",
+    "@bank/user": "*",
     "@types/koa-bodyparser": "^4.3.12",
     "graphql": "^16.9.0",
     "graphql-helix": "^1.13.0",
