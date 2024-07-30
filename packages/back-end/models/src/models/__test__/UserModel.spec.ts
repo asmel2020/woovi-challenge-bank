@@ -17,25 +17,30 @@ afterAll(disconnectMongoose);
 
 describe('UserModel', () => {
   it('should create a new user', async () => {
-    const user = new UserModel({
+    const user = await new UserModel({
       name: userFaker.name,
       email: userFaker.email,
       password: userFaker.password,
       balance: userFaker.balance
-    });
-
-    const savedUser = await user.save();
-
-    expect(savedUser._id).toBeDefined();
-    expect(savedUser.name).toEqual(userFaker.name);
-    expect(savedUser.email).toEqual(userFaker.email);
-    expect(savedUser.balance).toEqual(userFaker.balance);
+    }).save();
+    expect(user._id).toBeDefined();
+    expect(user.name).toEqual(userFaker.name);
+    expect(user.email).toEqual(userFaker.email);
+    expect(user.balance).toEqual(userFaker.balance);
   });
 
   it('should throw an error if email is not provided', async () => {
     try {
       const user = new UserModel({ name: userFaker.name, password: userFaker.password });
       await user.save();
+    } catch (error: any) {
+      expect(error.errors.email).toBeDefined();
+    }
+  });
+
+  it('should throw an error if email is not provided', async () => {
+    try {
+      await new UserModel({ name: userFaker.name, password: userFaker.password }).save();
     } catch (error: any) {
       expect(error.errors.email).toBeDefined();
     }

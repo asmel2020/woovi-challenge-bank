@@ -48,9 +48,10 @@ router.all('/graphql', async (ctx: any) => {
       variables,
       request,
       schema,
-      contextFactory() {
-        return { req: request, user };
-      }
+      contextFactory: () => ({
+        req: request,
+        user
+      })
     });
 
     ctx.respond = false;
