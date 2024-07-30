@@ -1,5 +1,5 @@
-import { GraphQLObjectType } from 'graphql';
 import { userDataSubscription } from '@bank/user';
+import { GraphQLObjectType } from 'graphql';
 export default new GraphQLObjectType({
   name: 'Subscription',
   fields: {

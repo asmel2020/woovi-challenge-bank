@@ -1,7 +1,6 @@
-import { subscriptionWithClientId } from 'graphql-relay-subscription';
-
 import { EVENTS, pubSub } from '@bank/helpers';
 import { UserType } from '@bank/models';
+import { subscriptionWithClientId } from 'graphql-relay-subscription';
 interface userData {
   name: string;
   email: string;
@@ -19,19 +18,17 @@ export const userDataSubscription = subscriptionWithClientId({
   },
   subscribe: (_, context) => {
     const nameEventTrigger = `${EVENTS.USER.DATA}.${context.user.id}`;
-    if (context.user) {
+    if (context.user)
       setTimeout(() => {
         pubSub.publish(nameEventTrigger, context.user);
       }, 0);
-    }
+
     return pubSub.asyncIterator(nameEventTrigger);
   },
-  getPayload: (obj: userData) => {
-    return {
-      name: obj.name,
-      email: obj.email,
-      balance: obj.balance,
-      error: obj.error
-    };
-  }
+  getPayload: (obj: userData) => ({
+    name: obj.name,
+    email: obj.email,
+    balance: obj.balance,
+    error: obj.error
+  })
 });

@@ -1,6 +1,6 @@
-import mongoose, { Document, Model, Types } from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 import { IUser } from './UserModel';
-const { ObjectId } = mongoose.Schema.Types;
+const { ObjectId } = Schema;
 
 const transactionSchema = new mongoose.Schema(
   {

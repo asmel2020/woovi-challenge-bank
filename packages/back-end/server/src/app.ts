@@ -1,3 +1,4 @@
+import { getUser } from '@bank/helpers';
 import { getGraphQLParameters, processRequest, renderGraphiQL, sendResult, shouldRenderGraphiQL } from 'graphql-helix';
 import koaPlayground from 'graphql-playground-middleware-koa';
 import cors from 'kcors';
@@ -6,7 +7,6 @@ import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import Router from 'koa-router';
 import { schema } from './schema/schema';
-import { getUser } from '@bank/helpers';
 
 const router = new Router();
 

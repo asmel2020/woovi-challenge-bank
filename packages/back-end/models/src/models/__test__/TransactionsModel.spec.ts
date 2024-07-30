@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { clearDatabase, connectMongoose, disconnectMongoose } from '../../../test/confingMongodbMemoryServer';
+import TransactionModel from '../TransactionsModel';
 import UserModel, { IUser } from '../UserModel';
-import TransactionModel, { ITransaction } from '../TransactionsModel';
 
 const userFaker = {
   name: faker.person.fullName().toLocaleLowerCase(),

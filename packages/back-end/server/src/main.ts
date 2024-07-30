@@ -1,8 +1,8 @@
 import { createServer } from 'http';
-import { useServer } from 'graphql-ws/lib/use/ws';
-import { GraphQLError } from 'graphql';
-import ws from 'ws';
 import { configurations, getUser } from '@bank/helpers';
+import { GraphQLError } from 'graphql';
+import { useServer } from 'graphql-ws/lib/use/ws';
+import ws from 'ws';
 import app from './app';
 import { connectDatabase } from './common/database';
 import { schema } from './schema/schema';
@@ -34,10 +34,10 @@ async function bootstrap() {
 
         return { request, user };
       },
-      onClose: ctx => {
+      onClose: _ => {
         // close the subscription when the connection is closed
       },
-      onError: ctx => {
+      onError: _ => {
         // close the subscription when the connection is closed
       }
     },

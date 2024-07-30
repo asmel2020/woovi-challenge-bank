@@ -12,7 +12,8 @@ export const connectDatabase = async (): Promise<void> => {
     url = MMS.getUri();
     console.log('MongoDB Memory Server started.');
   } else {
-    url = configurations.MONGO_URI;
+    const { MONGO_URI } = configurations;
+    url = MONGO_URI;
     console.log('MongoDB Server started.');
   }
 
