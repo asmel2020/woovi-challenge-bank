@@ -2,7 +2,7 @@ import { UserType } from '@bank/models';
 
 export const userDataQuery: any = {
   type: UserType,
-  resolve: (root: any, _: any, context: any) => {
+  resolve: async (root: any, _: any, context: any) => {
     if (!context.user)
       return {
         error: 'Not authorized'

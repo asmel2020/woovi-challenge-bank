@@ -105,7 +105,8 @@ export default [
       '**/.eslintrc.js',
       '**/eslint.config.mjs',
       '**/mongodbMemoryServer.js',
-      '**/dist'
+      '**/dist',
+      '**/webpack.config.js'
     ]
   }
 ];
